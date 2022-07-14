@@ -7,6 +7,12 @@ class Utilities:
     def sleep_now(self):
         time.sleep(0)
 
+# 1. create class Watch
+
+# 2. create class Step Counter
+
+# 3. create class Weather
+
 class FeetBit:
     # what happens at 'object initialize'
     def __init__(self):
@@ -41,6 +47,7 @@ if __name__ == "__main__":
     utils = Utilities()
     print("we are runnning the main program")
 
+    # 4. when creating the feetbit object, also pass these new objects to it
     feet_bit_object = FeetBit() # this is 'object initialize'
 
     utils.sleep_now()

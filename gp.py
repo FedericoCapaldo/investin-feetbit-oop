@@ -26,6 +26,7 @@ class GP_Practice:
         self.practise_name = name
         self.patient_list = []
         self.doctor_list = []
+        self.appointments = []
 
     def get_name(self):
         return self.practise_name.upper()
@@ -38,6 +39,25 @@ class GP_Practice:
 
     def add_doctor_to_practise(self, new_doctor):
         self.doctor_list.append(new_doctor)
+
+    def create_appointment(self, patient, doctor, date, notes=""):
+        new_appointment = Appointment(patient, doctor, date, notes)
+        self.appointments.append(new_appointment)
+
+    def get_all_appointments(self):
+        return self.appointments
+
+class Appointment:
+
+    def __init__(self, patient, doctor, date, notes=""):
+        self.patient = patient
+        self.doctor = doctor
+        self.date = date
+        self.notes = notes
+
+    def get_appointment_info(self):
+        return "Patient -> " + self.patient.get_name() + " Doctor -> " + self.doctor.get_name() + "(" + self.doctor.get_specialization() + ")" + "Notes (optional) -> " + self.notes
+
 
 if __name__ == "__main__":
 
@@ -57,6 +77,9 @@ if __name__ == "__main__":
     gp_practice.add_patient_to_practise(patient1)
     gp_practice.add_patient_to_practise(patient2)
 
-    print("from the practice")
-    for single_patient in gp_practice.get_patients():
-        print(single_patient.get_name())
+    gp_practice.create_appointment(patient1, doctor1, "30 July 2022", "Federico has headaches in kindergarden")
+    gp_practice.create_appointment(patient2, doctor1, "10 August 2022", "Jane's daugher can't stop hiccups")
+
+    for app in gp_practice.get_all_appointments():
+        print("APPOINTMENT")
+        print(app.get_appointment_info())

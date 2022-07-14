@@ -8,17 +8,9 @@ class Utilities:
         time.sleep(0)
 
 # 1. create class Watch
-
-# 2. create class Step Counter
-
-# 3. create class Weather
-
-class FeetBit:
-    # what happens at 'object initialize'
+class Watch:
     def __init__(self):
-        self.steps = 0
         self.watch = datetime
-        self.weather = self.update_weather()
 
     def get_current_time(self):
         return self.watch.now().time()
@@ -26,6 +18,24 @@ class FeetBit:
     def get_current_day(self):
         days_of_the_week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
         return "Today is " + days_of_the_week[self.watch.today().weekday()]
+
+
+# 2. create class Step Counter
+
+# 3. create class Weather
+
+class FeetBit:
+    # what happens at 'object initialize'
+    def __init__(self, watch):
+        self.steps = 0
+        self.watch = watch
+        self.weather = self.update_weather()
+
+    def get_current_time(self):
+        return self.watch.get_current_time()
+
+    def get_current_day(self):
+        return self.watch.get_current_day()
 
     def get_steps(self):
         return self.steps
@@ -48,7 +58,9 @@ if __name__ == "__main__":
     print("we are runnning the main program")
 
     # 4. when creating the feetbit object, also pass these new objects to it
-    feet_bit_object = FeetBit() # this is 'object initialize'
+    watch_object = Watch()
+
+    feet_bit_object = FeetBit(watch_object) # this is 'object initialize'
 
     utils.sleep_now()
     print("printing time from feetbit:")

@@ -1,64 +1,62 @@
 # FeetBit program
-
-# steps
-# time
-#
-
-import datetime
 import time
+from datetime import datetime
 
-class StepCounter:
-
-    def __init__(self):
-        self._steps = 0
-
-    def get_steps(self):
-        return self._steps
-
-    def record_steps(self, number_of_steps):
-        print(f'recording some steps... ({number_of_steps})')
-        self._steps += number_of_steps
-
-
-
-class Watch:
-    import datetime
-    # what happens when we create an object of this blueprint
-    def __init__(self):
-        self.watch = datetime.datetime
-
-    def gimme_time(self):
-        return self.watch.now().time()
-
+class Utilities:
+    def sleep_now(self):
+        time.sleep(12)
 
 class FeetBit:
+    # what happens at 'object initialize'
+    def __init__(self):
+        self.steps = 0
 
-    def gimme_time(self):
-        return datetime.datetime.now().time()
+    def get_current_time(self):
+        return datetime.now().time()
+
+    def get_current_day(self):
+        days_of_the_week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+        return "Today is " + days_of_the_week[datetime.today().weekday()]
+
+    def get_steps(self):
+        return self.steps
+
+    def record_new_steps(self, new_steps):
+        self.steps = self.steps + new_steps
 
 
-def sleep_now():
-    time.sleep(5)
 
-
+# ENTRY POINT OF OUR PROGRAM
 if __name__ == "__main__":
+    utils = Utilities()
     print("we are runnning the main program")
 
-    feet_bit_object = FeetBit()
+    feet_bit_object = FeetBit() # this is 'object initialize'
+
+    utils.sleep_now()
+    print("printing time from feetbit:")
+    utils.sleep_now()
+    print(feet_bit_object.get_current_time())
+
+    utils.sleep_now()
+    print("printing day of the week:")
+    utils.sleep_now()
+    print(feet_bit_object.get_current_day())
+
+
+    utils.sleep_now()
+    print("current steps ->", feet_bit_object.get_steps())
+
+    utils.sleep_now()
+    print("adding more steps to fitbit")
+    feet_bit_object.record_new_steps(5)
+    feet_bit_object.record_new_steps(5)
+
+    utils.sleep_now()
+    print("current steps ->", feet_bit_object.get_steps())
+
+
+    utils.sleep_now()
     print("printing time from feetbit")
-    sleep_now()
-    print(feet_bit_object.gimme_time())
-
-
-    spo = StepCounter()
-    sleep_now()
-    print("this is the step count ->", spo.get_steps())
-    new_steps_to_record = 5
-    spo.record_steps(new_steps_to_record)
-    spo.record_steps(new_steps_to_record)
-    sleep_now()
-    print("this is the step count ->", spo.get_steps())
-
-    watch_object = Watch()
-    sleep_now()
-    print(watch_object.gimme_time())
+    utils.sleep_now()
+    print(feet_bit_object.get_current_time())

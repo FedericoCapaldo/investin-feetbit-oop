@@ -34,12 +34,15 @@ class StepCounter():
 # 3. create class Weather
 class WeatherForecast():
     def __init__(self):
-        self.weather = self.update_weather()
+        self.weather = self.get_new_weather()
 
-    def update_weather(self):
+    def get_new_weather(self):
         # simulating weather forecast
         possible_weather_conditions = ["Sunny", "Cloudy", "Windy", "Rainy", "Snowy"]
         return possible_weather_conditions[random.randint(0, 4)]
+
+    def update_weather(self):
+        self.weather = self.get_new_weather()
 
     def get_weather(self):
         return self.weather
@@ -63,6 +66,9 @@ class FeetBit:
 
     def record_new_steps(self, new_steps):
         self.step_counter.record_new_steps(new_steps)
+
+    def update_weather(self):
+        self.weather_forecast.update_weather()
 
     def get_weather(self):
         return self.weather_forecast.get_weather()
@@ -112,4 +118,12 @@ if __name__ == "__main__":
     utils.sleep_now()
     print("what's the weather like?")
     utils.sleep_now()
+    print(feet_bit_object.get_weather())
+    utils.sleep_now()
+    print("what's the weather like again 2?")
+    feet_bit_object.update_weather()
+    print(feet_bit_object.get_weather())
+    utils.sleep_now()
+    print("what's the weather like again 3?")
+    feet_bit_object.update_weather()
     print(feet_bit_object.get_weather())

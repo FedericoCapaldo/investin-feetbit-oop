@@ -21,13 +21,22 @@ class Watch:
 
 
 # 2. create class Step Counter
+class StepCounter():
+    def __init__(self):
+        self.steps = 0
+
+    def get_steps(self):
+        return self.steps
+
+    def record_new_steps(self, new_steps):
+        self.steps = self.steps + new_steps
 
 # 3. create class Weather
 
 class FeetBit:
     # what happens at 'object initialize'
-    def __init__(self, watch):
-        self.steps = 0
+    def __init__(self, watch, my_step_counter):
+        self.step_counter = my_step_counter
         self.watch = watch
         self.weather = self.update_weather()
 
@@ -38,10 +47,10 @@ class FeetBit:
         return self.watch.get_current_day()
 
     def get_steps(self):
-        return self.steps
+        return self.step_counter.get_steps()
 
     def record_new_steps(self, new_steps):
-        self.steps = self.steps + new_steps
+        self.step_counter.record_new_steps(new_steps)
 
     def update_weather(self):
         # simulating weather forecast
@@ -59,8 +68,9 @@ if __name__ == "__main__":
 
     # 4. when creating the feetbit object, also pass these new objects to it
     watch_object = Watch()
+    step_counter_objet = StepCounter()
 
-    feet_bit_object = FeetBit(watch_object) # this is 'object initialize'
+    feet_bit_object = FeetBit(watch_object, step_counter_objet) # this is 'object initialize'
 
     utils.sleep_now()
     print("printing time from feetbit:")

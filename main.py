@@ -1,22 +1,25 @@
 # FeetBit program
 import time
 from datetime import datetime
+import random
 
 class Utilities:
     def sleep_now(self):
-        time.sleep(12)
+        time.sleep(0)
 
 class FeetBit:
     # what happens at 'object initialize'
     def __init__(self):
         self.steps = 0
+        self.watch = datetime
+        self.weather = self.update_weather()
 
     def get_current_time(self):
-        return datetime.now().time()
+        return self.watch.now().time()
 
     def get_current_day(self):
         days_of_the_week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-        return "Today is " + days_of_the_week[datetime.today().weekday()]
+        return "Today is " + days_of_the_week[self.watch.today().weekday()]
 
     def get_steps(self):
         return self.steps
@@ -24,6 +27,13 @@ class FeetBit:
     def record_new_steps(self, new_steps):
         self.steps = self.steps + new_steps
 
+    def update_weather(self):
+        # simulating weather forecast
+        possible_weather_conditions = ["Sunny", "Cloudy", "Windy", "Rainy", "Snowy"]
+        return possible_weather_conditions[random.randint(0, 4)]
+
+    def get_weather(self):
+        return self.weather
 
 
 # ENTRY POINT OF OUR PROGRAM
@@ -60,3 +70,8 @@ if __name__ == "__main__":
     print("printing time from feetbit")
     utils.sleep_now()
     print(feet_bit_object.get_current_time())
+
+    utils.sleep_now()
+    print("what's the weather like?")
+    utils.sleep_now()
+    print(feet_bit_object.get_weather())
